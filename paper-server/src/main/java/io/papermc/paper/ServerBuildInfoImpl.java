@@ -24,7 +24,7 @@ public record ServerBuildInfoImpl(
     Optional<String> gitCommit
 ) implements ServerBuildInfo {
     private static final String ATTRIBUTE_BRAND_ID = "Brand-Id";
-    private static final String ATTRIBUTE_BRAND_NAME = "Brand-Name";
+    private static final String ATTRIBUTE_BRAND_NAME = "§cMushCore"; // OutMush Fork
     private static final String ATTRIBUTE_BUILD_TIME = "Build-Time";
     private static final String ATTRIBUTE_BUILD_NUMBER = "Build-Number";
     private static final String ATTRIBUTE_GIT_BRANCH = "Git-Branch";
