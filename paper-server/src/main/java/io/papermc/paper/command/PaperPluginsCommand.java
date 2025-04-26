@@ -37,21 +37,21 @@ public class PaperPluginsCommand extends BukkitCommand {
 
     private static final Component SERVER_PLUGIN_INFO = Component.text("ℹ What is a server plugin?", INFO_COLOR)
         .append(asPlainComponents("""
-                                      Server plugins can add new behavior to your server!
-                                      You can find new plugins on Paper's plugin repository, Hangar.
-                                      
-                                      https://hangar.papermc.io/
-                                      """));
+            Server plugins can add new behavior to your server!
+            You can find new plugins on Paper's plugin repository, Hangar.
+            
+            https://hangar.papermc.io/
+            """));
 
     private static final Component LEGACY_PLUGIN_INFO = Component.text("ℹ What is a legacy plugin?", INFO_COLOR)
         .append(asPlainComponents("""
-                                      A legacy plugin is a plugin that was made on
-                                      very old unsupported versions of the game.
-                                      
-                                      It is encouraged that you replace this plugin,
-                                      as they might not work in the future and may cause
-                                      performance issues.
-                                      """));
+            A legacy plugin is a plugin that was made on
+            very old unsupported versions of the game.
+            
+            It is encouraged that you replace this plugin,
+            as they might not work in the future and may cause
+            performance issues.
+            """));
 
     private static final Component LEGACY_PLUGIN_STAR = Component.text('*', TextColor.color(255, 212, 42)).hoverEvent(LEGACY_PLUGIN_INFO);
     private static final Component INFO_ICON_START = Component.text("ℹ ", INFO_COLOR);
@@ -60,7 +60,8 @@ public class PaperPluginsCommand extends BukkitCommand {
 
     private static final Component INFO_ICON_SERVER_PLUGIN = INFO_ICON_START.hoverEvent(SERVER_PLUGIN_INFO).clickEvent(ClickEvent.openUrl("https://docs.papermc.io/paper/adding-plugins"));
 
-    private static final Type JAVA_PLUGIN_PROVIDER_TYPE = new TypeToken<PluginProvider<JavaPlugin>>() {}.getType();
+    private static final Type JAVA_PLUGIN_PROVIDER_TYPE = new TypeToken<PluginProvider<JavaPlugin>>() {
+    }.getType();
 
     public PaperPluginsCommand() {
         super("plugins");
@@ -147,8 +148,12 @@ public class PaperPluginsCommand extends BukkitCommand {
                 if (plugin == null) {
                     return NamedTextColor.RED;
                 }
-
-                return plugin.isEnabled() ? NamedTextColor.GREEN : NamedTextColor.RED;
+                // OutMush fork start
+                if (plugin.isEnabled() && plugin.getDescription().getName().startsWith("Mush"))
+                    return NamedTextColor.GOLD;
+                else
+                    return plugin.isEnabled() ? NamedTextColor.GREEN : NamedTextColor.RED;
+                // OutMush fork end
             }
 
             return switch (status) {
